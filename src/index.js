@@ -49,11 +49,22 @@ export async function connect() {
   }
 }
 
+export async function connectPasswordless() {
+  console.log("Requesting passwordless login");
+  try {
+      const loginState = await auth.loginWithLink("shaloo@newfang.io");
+      console.log(loginState);
+      document.querySelector("#result").innerHTML = "Passwordless Login Status: "+loginState; 
+    } catch (e) {
+      console.log(e);
+    }
+}
+
 export async function connectSocial(socialProvider) {
   try {
     await auth.loginWithSocial(socialProvider);
     document.querySelector("#result").innerHTML =
-      "#name: User logged in successfully!";
+      socialProvider+": User logged in successfully!";
   } catch (e) {
     console.log(e);
   }
@@ -87,6 +98,17 @@ async function getLoginStatus() {
     const loginState = await auth.isLoggedIn();
     console.log ({ loginState });
     document.querySelector("#result").innerHTML = "Login Status:"+loginState; 
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+async function getLogins() {
+  console.log("Check available login options");
+  try {
+    const available = await auth.getLogins();
+    console.log (available);
+    document.querySelector("#result").innerHTML = available.toString(); 
   } catch (e) {
     console.log(e);
   }
@@ -135,13 +157,15 @@ async function switchChain() {
 initAuth();
 
 document.querySelector("#Btn-Connect").addEventListener("click", connect);
-document.querySelector("#Btn-Google").addEventListener("click", () => { connectSocial('google')});
-document.querySelector("#Btn-Steam").addEventListener("click", () => { connectSocial('steam')});
-document.querySelector("#Btn-Discord").addEventListener("click", () => { connectSocial('discord')});
-document.querySelector("#Btn-Twitch").addEventListener("click", () => { connectSocial('twitch')});
+document.querySelector("#Btn-Google").addEventListener("click", () => { connectSocial('google'); });
+document.querySelector("#Btn-Steam").addEventListener("click", () => { connectSocial('steam'); });
+document.querySelector("#Btn-Discord").addEventListener("click", () => { connectSocial('discord'); });
+document.querySelector("#Btn-Twitch").addEventListener("click", () => { connectSocial('twitch'); });
+document.querySelector("#Btn-Passwordless").addEventListener("click", () => { connectPasswordless(); });
 document.querySelector("#Btn-GetAccounts").addEventListener("click", getAccounts);
 document.querySelector("#Btn-GetUser").addEventListener("click", getUser);
 document.querySelector("#Btn-GetLoginStatus").addEventListener("click", getLoginStatus);
+document.querySelector("#Btn-Login-Options").addEventListener("click", getLogins);
 document.querySelector("#Btn-AddChain").addEventListener("click", addChain);
 document.querySelector("#Btn-SwitchChain").addEventListener("click", switchChain);
 document.querySelector("#Btn-Logout").addEventListener("click", logout);

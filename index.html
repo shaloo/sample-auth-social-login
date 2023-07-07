@@ -9,24 +9,24 @@
 
   <body>
     <div id="app"></div>
-    <h1>Vanilla Sample App Integration with Arcana Auth!</h1>
+    <h1>Arcana Auth: Social Login with PNP & Custom UI!</h1>
     <div>
       <div class="title_style">
         <p style="padding: 1rem;">
-          This simple HTML/CSS/JS Web3 app example demonstrates Arcana Auth SDK
-          integration and uses
+          This simple HTML/CSS/JS Web3 app example demonstrates how Arcana Auth SDK's built-in, plug-and-play login UI or custom login UI can be used to onboard users.
+        </p>
+        <p style="padding: 1rem;">It uses 
           <a
             href="https://parceljs.org"
             target="_blank"
             rel="noopener noreferrer"
-            >Parcel.</a
-          >
+            >Parcel</a
+          > bundler.
         </p>
+
         <div class="admonition">
           <strong>Use model:</strong>
-          <br /><br />Users must log into the app by clicking on the Auth Plug
-          and Play 'Connect' button below, authenticate themselves and then
-          access the wallet.
+          <br /><br /><p><ol><li>Log in using one of the connect options listed below. </li><li>Get information about the user, account, login status, if reconnect is possible, etc.</li><li>Perform wallet operations using the Arcana wallet UI</li><li>Logout</li></ol></p>
         </div>
       </div>
     </div>
@@ -37,19 +37,22 @@
     
 	    <div class="function_container">
 	      <div class="functions">
-		<button id="Btn-Connect">Plug&Play</button>
+		      <button id="Btn-Connect">Plug&Play</button>
 	      </div>
 	      <div class="functions">
-		<button id="Btn-Google">Google</button>
+		      <button id="Btn-Google">Google</button>
 	      </div>
 	      <div class="functions">
-		<button id="Btn-Steam">Steam</button>
+		      <button id="Btn-Steam">Steam</button>
 	      </div>
 	      <div class="functions">
-		<button id="Btn-Twitch">Twitch</button>
+		      <button id="Btn-Twitch">Twitch</button>
 	      </div>
 	      <div class="functions">
-		<button id="Btn-Discord">Discord</button>
+		      <button id="Btn-Discord">Discord</button>
+	      </div>
+        <div class="functions">
+          <button id="Btn-Passwordless">Get Login Link</button>
 	      </div>
 	    </div>
     <hr>
@@ -57,25 +60,28 @@
  
 	    <div class="function_container">
 	      <div class="functions">
-		<button id="Btn-GetAccounts">Get Accounts</button>
+		      <button id="Btn-GetAccounts">Get Accounts</button>
 	      </div>
 	      <div class="functions">
-		<button id="Btn-GetUser">Get User Details</button>
+		      <button id="Btn-GetUser">Get User Details</button>
 	      </div>
 	      <div class="functions">
-		<button id="Btn-GetLoginStatus">Login Status</button>
+		      <button id="Btn-GetLoginStatus">Login Status</button>
 	      </div>
-            </div>
+        <div class="functions">
+		      <button id="Btn-Login-Options">Login Options</button>
+	      </div>
+      </div>
 
     <hr>
     <h2>Wallet Ops</h2>
     
 	    <div class="function_container">
 	      <div class="functions">
-	      <button id="Btn-AddChain">Add Chain</button>
+	        <button id="Btn-AddChain">Add Chain</button>
 	      </div>
 	      <div class="functions">
-	      <button id="Btn-SwitchChain">Switch Chain</button>
+	        <button id="Btn-SwitchChain">Switch Chain</button>
 	      </div>
             </div>
     <hr>
@@ -83,7 +89,7 @@
     
 	    <div class="function_container">
 	      <div class="functions">
-	      <button id="Btn-Logout">Logout</button>
+	        <button id="Btn-Logout">Logout</button>
 	      </div>
             </div>
 
