@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Parcel Sandbox</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="src/styles.css" />
+    <script type="module" src="src/index.js"></script>
+  </head>
+
+  <body>
+    <div id="app"></div>
+    <h1>Vanilla Sample App Integration with Arcana Auth!</h1>
+    <div>
+      <div class="title_style">
+        <p style="padding: 1rem;">
+          This simple HTML/CSS/JS Web3 app example demonstrates Arcana Auth SDK
+          integration and uses
+          <a
+            href="https://parceljs.org"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Parcel.</a
+          >
+        </p>
+        <div class="admonition">
+          <strong>Use model:</strong>
+          <br /><br />Users must log into the app by clicking on the Auth Plug
+          and Play 'Connect' button below, authenticate themselves and then
+          access the wallet.
+        </div>
+      </div>
+    </div>
+
+    <div class="function_category">
+      <hr>
+      <h2>Connect</h2>
+    
+	    <div class="function_container">
+	      <div class="functions">
+		<button id="Btn-Connect">Plug&Play</button>
+	      </div>
+	      <div class="functions">
+		<button id="Btn-Google">Google</button>
+	      </div>
+	      <div class="functions">
+		<button id="Btn-Steam">Steam</button>
+	      </div>
+	      <div class="functions">
+		<button id="Btn-Twitch">Twitch</button>
+	      </div>
+	      <div class="functions">
+		<button id="Btn-Discord">Discord</button>
+	      </div>
+	    </div>
+    <hr>
+    <h2>Get Info</h2>
+ 
+	    <div class="function_container">
+	      <div class="functions">
+		<button id="Btn-GetAccounts">Get Accounts</button>
+	      </div>
+	      <div class="functions">
+		<button id="Btn-GetUser">Get User Details</button>
+	      </div>
+	      <div class="functions">
+		<button id="Btn-GetLoginStatus">Login Status</button>
+	      </div>
+            </div>
+
+    <hr>
+    <h2>Wallet Ops</h2>
+    
+	    <div class="function_container">
+	      <div class="functions">
+	      <button id="Btn-AddChain">Add Chain</button>
+	      </div>
+	      <div class="functions">
+	      <button id="Btn-SwitchChain">Switch Chain</button>
+	      </div>
+            </div>
+    <hr>
+    <h2>Disconnect</h2>
+    
+	    <div class="function_container">
+	      <div class="functions">
+	      <button id="Btn-Logout">Logout</button>
+	      </div>
+            </div>
+
+    </div>
+
+    <div class="result_style" id="result-container">
+      <strong>Result: </strong><span id="result"></span>
+    </div>
+  </body>
+</html>
