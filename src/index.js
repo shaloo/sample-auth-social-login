@@ -2,14 +2,17 @@ import { AuthProvider } from "@arcana/auth";
 
 const auth = new AuthProvider("xar_dev_19527cdf585cd31d0bd06bfc1b008accea781404", {
   //required
-  network: "testnet", //defaults to 'testnet'
+  network: "dev", //defaults to 'testnet'
   //network: "mainnet", //defaults to 'testnet'
   position: "right", //defaults to right
-  theme: "dark", //defaults to dark
+  theme: "light", //defaults to dark
   alwaysVisible: true, //defaults to true which is Full UI mode
   chainConfig: {
     chainId: "80001", //defaults to CHAIN.ETHEREUM_MAINNET
     rpcUrl: "https://rpc.ankr.com/polygon_mumbai" //defaults to 'https://rpc.ankr.com/eth'
+  },
+  connectOptions: {
+    compact: true
   }
 });
 
