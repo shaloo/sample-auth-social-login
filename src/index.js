@@ -1,9 +1,21 @@
 import { AuthProvider } from "@arcana/auth";
 
-const auth = new AuthProvider("xar_dev_19527cdf585cd31d0bd06bfc1b008accea781404", {
-  //required
-  network: "dev", //defaults to 'testnet'
-  //network: "mainnet", //defaults to 'testnet'
+let userInput;
+
+let {
+   ENV_ARCANA_CLIENTID,
+   ENV_USER_LOGIN_EMAIL
+} = process.env;
+
+console.log (" ENV_ARCANA_CLIENTID ", ENV_ARCANA_CLIENTID);
+if (process.env.NODE_ENV === 'development') {
+  console.log('Sample-Auth-social-login: Happy developing!');
+} else {
+  console.log('Sample-Auth-social-login: Happy production!');
+}
+
+const auth = new AuthProvider(ENV_ARCANA_CLIENTID, {
+  network: "mainnet",
   position: "right", //defaults to right
   theme: "light", //defaults to dark
   alwaysVisible: true, //defaults to true which is Full UI mode
@@ -52,10 +64,38 @@ export async function connect() {
   }
 }
 
+export async function connectPasswordlessOTP() {
+  console.log("Requesting passwordless login with OTP");
+  try {
+      const loginState = await auth.loginWithOTPStart(ENV_USER_LOGIN_EMAIL);
+      console.log(loginState);
+      await loginState.begin()
+
+      if(loginState.isCompleteRequired) {
+        // Ask the user to input a 6-digit code
+        var userInput = prompt("Please enter a 6-digit code:", "111111");
+
+        // Validate if the input is a 6-digit code
+       if (userInput !== null && userInput.length === 6 && !isNaN(userInput)) {
+         console.log("Valid 6-digit code entered: " + userInput);
+         const complete = await auth.loginWithOTPComplete(userInput);
+         console.log("complete:",complete);
+         document.querySelector("#result").innerHTML = "OTP Login Done"; 
+       } else {
+           console.log("Invalid input. Please enter a valid 6-digit code.");
+           document.querySelector("#result").innerHTML = "Passwordless Login Status: Wrong OTP"; 
+       }  
+      } else {
+          console.log ("isCompleteRequired False, built-in UI for OTP will pop up in global keys enabled app");
+      }
+    } catch (e) {
+      console.log(e);
+    }
+}
 export async function connectPasswordless() {
   console.log("Requesting passwordless login");
   try {
-      const loginState = await auth.loginWithLink("shaloo@newfang.io");
+      const loginState = await auth.loginWithLink(ENV_USER_LOGIN_EMAIL);
       console.log(loginState);
       document.querySelector("#result").innerHTML = "Passwordless Login Status: "+loginState; 
     } catch (e) {
@@ -165,6 +205,7 @@ document.querySelector("#Btn-Steam").addEventListener("click", () => { connectSo
 document.querySelector("#Btn-Discord").addEventListener("click", () => { connectSocial('discord'); });
 document.querySelector("#Btn-Twitch").addEventListener("click", () => { connectSocial('twitch'); });
 document.querySelector("#Btn-Passwordless").addEventListener("click", () => { connectPasswordless(); });
+document.querySelector("#Btn-Passwordless-OTP").addEventListener("click", () => { connectPasswordlessOTP(); });
 document.querySelector("#Btn-GetAccounts").addEventListener("click", getAccounts);
 document.querySelector("#Btn-GetUser").addEventListener("click", getUser);
 document.querySelector("#Btn-GetLoginStatus").addEventListener("click", getLoginStatus);
